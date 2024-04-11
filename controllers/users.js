@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const validator = require('validator');
-const imageSize = require('image-size');
+// const imageSize = require('image-size');
 
 const User = require('../models/users');
 const appError = require('../service/appError');
@@ -17,11 +17,9 @@ const usersController = {
      * 密碼需 8 碼以上，且中英混合
      * 帳號已經被註冊，請替換新的 Email
      */
-    let { email, password, name } = req.body;
-
-    console.log(password);
+    let { email, password: rawPassword, name } = req.body;
   
-    if(!email || !password || !name) {
+    if(!email || !rawPassword || !name) {
       return next(appError("400", "欄位沒有填寫正確", next));
     }
 
@@ -33,11 +31,11 @@ const usersController = {
       return next(appError("400", "Email 格式不正確", next));
     }
 
-    if(!validator.isLength(password, {min: 8})){
+    if(!validator.isLength(rawPassword, {min: 8})){
       return next(appError(400, "密碼不可低於 8 碼", next));
     }
     
-    if(validator.isAlpha(password) || validator.isNumeric(password)){
+    if(validator.isAlpha(rawPassword) || validator.isNumeric(rawPassword)){
       return next(appError(400, "密碼需英數混合", next));
     }
     
@@ -46,14 +44,14 @@ const usersController = {
       return next(appError("400", "帳號已經被註冊，請替換新的 Email", next));
     }
   
-    password = await bcrypt.hash(password, 12);
+    const password = await bcrypt.hash(rawPassword, 12);
     const newUser = await User.create({
       email,
       password,
       name
     });
   
-    generateSendJWT(newUser, 201, res); // 註冊成功給 token ，表示為登入狀態
+    generateSendJWT(newUser, 201, res); // 註冊成功給 token，表示為登入狀態
   }),
 
   sign_in: handleErrorAsync(async(req, res, next) => {
@@ -110,7 +108,8 @@ const usersController = {
       photo,
       name,
       gender
-    }, { runValidators: true });
+    }, { returnDocument: 'after' });
+    
     handleSuccess(res, editUser);
   }),
   updatePassword: handleErrorAsync(async (req, res, next) => {

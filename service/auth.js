@@ -32,11 +32,13 @@ const isAuth = handleErrorAsync(async (req, res, next) => {
 });
 
 const generateSendJWT = (user, statusCode, res) => {
-  // 產生 JWT
-  // sign 簽出一個憑證（餐廳號碼牌概念）
-  // 第一個參數：要放什麼資訊
-  // 第二個參數：加鹽混淆
-  // 第三個參數：過期時間
+  /**
+   * JWT 生成
+   * sign 簽出憑證（餐廳號碼牌概念）
+   * 參數一：要放什麼資訊
+   * 參數二：salt（混淆）
+   * 參數三：過期時間
+   */
   const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_DAY
   });

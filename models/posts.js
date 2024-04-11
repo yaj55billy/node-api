@@ -5,7 +5,7 @@ const postSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.ObjectId,
       ref: "user",
-      required: [true, '貼文姓名未填寫']
+      required: [true, 'user 未填寫']
     },
     image: {
       type: String,
@@ -23,14 +23,12 @@ const postSchema = new mongoose.Schema(
       type: Number,
       default: 0
     },
-    createdAt: {
-      type: Date,
-      default: Date.now(),
-      select: false
-    },
     type: {
       type: String,
-      enum: ['group','person'], 
+      enum: {
+        values: ['group','person'],
+        message: '貼文類型只能是 group 或 person'
+      },
       required: [true, '貼文類型 type 未填寫']
     },
     tags: {
@@ -41,6 +39,11 @@ const postSchema = new mongoose.Schema(
         },
         message: '至少需要一個貼文標籤，且不能為空值'
       }
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now(),
+      select: false
     },
   }, 
   { versionKey: false }
