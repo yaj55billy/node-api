@@ -1,4 +1,5 @@
 const mongoose = require('mongoose'); 
+const moment = require('moment-timezone');
 
 const postSchema = new mongoose.Schema(
   {
@@ -42,8 +43,9 @@ const postSchema = new mongoose.Schema(
     },
     createdAt: {
       type: Date,
-      default: Date.now(),
-      select: false
+      default: function() {
+        return moment().tz("Asia/Taipei").toDate();
+      }
     },
   }, 
   { versionKey: false }

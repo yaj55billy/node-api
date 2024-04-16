@@ -32,11 +32,11 @@ const usersController = {
     }
 
     if(!validator.isLength(rawPassword, {min: 8})){
-      return next(appError(400, "密碼不可低於 8 碼", next));
+      return next(appError(400, "密碼需至少 8 碼以上，並中英混合", next));
     }
     
     if(validator.isAlpha(rawPassword) || validator.isNumeric(rawPassword)){
-      return next(appError(400, "密碼需英數混合", next));
+      return next(appError(400, "密碼需至少 8 碼以上，並中英混合", next));
     }
     
     const existingUser = await User.findOne({ email }); // 資料表中是否存在這個 email

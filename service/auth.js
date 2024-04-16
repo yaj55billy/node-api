@@ -25,7 +25,7 @@ const isAuth = handleErrorAsync(async (req, res, next) => {
     })
   });
 
-  const currentUser = await User.findById(decoded.id);
+  const currentUser = await User.findById(decoded.id).select('-password');
   req.user = currentUser;
 
   next();
