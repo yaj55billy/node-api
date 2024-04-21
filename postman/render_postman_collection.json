@@ -1,0 +1,349 @@
+{
+	"info": {
+		"_postman_id": "2d8a9bef-07a2-4dd6-beb3-02cf60894b3e",
+		"name": "metawall 線上 api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9826030"
+	},
+	"item": [
+		{
+			"name": "取得所有貼文",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://node-api-cqno.onrender.com/api/posts",
+					"protocol": "https",
+					"host": [
+						"node-api-cqno",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"posts"
+					],
+					"query": [
+						{
+							"key": "timeSort",
+							"value": "asc",
+							"disabled": true
+						},
+						{
+							"key": "q",
+							"value": "貼文內容",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增單筆貼文",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": \"660804e3dfaf91e0b083c842\",\n    \"image\": \"https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=2043&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\n    \"content\": \"貼文內容0403-2\",\n    \"type\": \"person\",\n    \"tags\": [\"測試0403-2\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://node-api-cqno.onrender.com/api/post",
+					"protocol": "https",
+					"host": [
+						"node-api-cqno",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "編輯單筆貼文",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"更改內容333～\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://node-api-cqno.onrender.com/api/post/66080fe87d7203180844ebb0",
+					"protocol": "https",
+					"host": [
+						"node-api-cqno",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"post",
+						"66080fe87d7203180844ebb0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除單筆貼文",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://node-api-cqno.onrender.com/api/post/6608094946d84b2693985b05",
+					"protocol": "https",
+					"host": [
+						"node-api-cqno",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"post",
+						"6608094946d84b2693985b05"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除所有貼文",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://node-api-cqno.onrender.com/api/posts",
+					"protocol": "https",
+					"host": [
+						"node-api-cqno",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "使用者註冊",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"billy@gmail.com\",\n    \"password\": \"yaj55billy\",\n    \"name\": \"比利\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://node-api-cqno.onrender.com/api/users/sign_up",
+					"protocol": "https",
+					"host": [
+						"node-api-cqno",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"users",
+						"sign_up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "使用者登入",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"billy3@gmail.com\",\n    \"password\": \"yaj55billy\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://node-api-cqno.onrender.com/api/users/sign_in",
+					"protocol": "https",
+					"host": [
+						"node-api-cqno",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"users",
+						"sign_in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "讀取個人資料",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MTI1ZmExYTdkYmY1YmY2YWUyNTA0NyIsImlhdCI6MTcxMjQ4MDM4NywiZXhwIjoxNzEzMDg1MTg3fQ.YoTPaJkfbpKS5bpiTan_UUiFqj4pqdfA-Vl6ywZ03sY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://node-api-cqno.onrender.com/api/users/profile",
+					"protocol": "https",
+					"host": [
+						"node-api-cqno",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"users",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "編輯個人資料",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MTI1ZmExYTdkYmY1YmY2YWUyNTA0NyIsImlhdCI6MTcxMjQ4MDM4NywiZXhwIjoxNzEzMDg1MTg3fQ.YoTPaJkfbpKS5bpiTan_UUiFqj4pqdfA-Vl6ywZ03sY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"photo\": \"\", \n    \"name\": \"比利\", \n    \"gender\": \"male\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://node-api-cqno.onrender.com/api/users/updateProfile",
+					"protocol": "https",
+					"host": [
+						"node-api-cqno",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"users",
+						"updateProfile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "更改密碼",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ...",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\": \"\", \n    \"confirmPassword\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://node-api-cqno.onrender.com/api/users/updatePassword",
+					"protocol": "https",
+					"host": [
+						"node-api-cqno",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"users",
+						"updatePassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "上傳圖片",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MTI5OTA0ZGYxYTBmMDQwMzhhMTA1OSIsImlhdCI6MTcxMzU5NTU1NSwiZXhwIjoxNzE0MjAwMzU1fQ.R7MoQC_yyM9KCdEId2JEBi354L2Dob8MOBF_YXKk3P8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "https://node-api-cqno.onrender.com/api/upload/file",
+					"protocol": "https",
+					"host": [
+						"node-api-cqno",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"upload",
+						"file"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

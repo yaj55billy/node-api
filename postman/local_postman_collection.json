@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "8acca256-6045-4e6a-9042-b62d3a254fad",
+		"name": "post - 本地 week4-week7",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9826030"
+	},
+	"item": [
+		{
+			"name": "取得所有貼文",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3005/api/posts?timeSort=asc",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "3005",
+					"path": ["api", "posts"],
+					"query": [
+						{
+							"key": "timeSort",
+							"value": "asc"
+						},
+						{
+							"key": "q",
+							"value": "貼文內容",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增單筆貼文",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": \"66129904df1a0f04038a1059\",\n    \"image\": \"https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=2643&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\n    \"content\": \"我家的貓...\",\n    \"type\": \"person\",\n    \"tags\": [\"貓咪\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3005/api/post",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "3005",
+					"path": ["api", "post"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "編輯單筆貼文",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"更改內容333～\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3005/api/post/66080fe87d7203180844ebb0",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "3005",
+					"path": ["api", "post", "66080fe87d7203180844ebb0"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除單筆貼文",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3005/api/post/6608094946d84b2693985b05",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "3005",
+					"path": ["api", "post", "6608094946d84b2693985b05"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除所有貼文",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3005/api/posts",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "3005",
+					"path": ["api", "posts"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "使用者註冊",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"billy3@gmail.com\",\n    \"password\": \"yaj55billy\",\n    \"name\": \"比利3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3005/api/users/sign_up",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "3005",
+					"path": ["api", "users", "sign_up"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "使用者登入",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"billy@gmail.com\",\n    \"password\": \"yaj55billy\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3005/api/users/sign_in",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "3005",
+					"path": ["api", "users", "sign_in"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "讀取個人資料",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MTI5OTA0ZGYxYTBmMDQwMzhhMTA1OSIsImlhdCI6MTcxMjgyMTMxNiwiZXhwIjoxNzEzNDI2MTE2fQ.1UkZ5ljAIK8TLBY7bB8oFKwv8WakGYVYJzOGGrToIek",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:3005/api/users/profile",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "3005",
+					"path": ["api", "users", "profile"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "編輯個人資料",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MTI5OTA0ZGYxYTBmMDQwMzhhMTA1OSIsImlhdCI6MTcxMjgyMTMxNiwiZXhwIjoxNzEzNDI2MTE2fQ.1UkZ5ljAIK8TLBY7bB8oFKwv8WakGYVYJzOGGrToIek",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"photo\": \"https://i.imgur.com/6uC6FLI.png\", \n    \"name\": \"比利\", \n    \"gender\": \"male\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3005/api/users/updateProfile",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "3005",
+					"path": ["api", "users", "updateProfile"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "更改密碼",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ...",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\": \"\", \n    \"confirmPassword\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3005/api/users/updatePassword",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "3005",
+					"path": ["api", "users", "updatePassword"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "上傳圖片",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MTI5OTA0ZGYxYTBmMDQwMzhhMTA1OSIsImlhdCI6MTcxMzU5NTU1NSwiZXhwIjoxNzE0MjAwMzU1fQ.R7MoQC_yyM9KCdEId2JEBi354L2Dob8MOBF_YXKk3P8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/guanyi/Pictures/avatar-q.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3005/api/upload/file",
+					"protocol": "http",
+					"host": ["127", "0", "0", "1"],
+					"port": "3005",
+					"path": ["api", "upload", "file"]
+				}
+			},
+			"response": []
+		}
+	]
+}
