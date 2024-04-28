@@ -101,11 +101,20 @@ const usersController = {
 	}),
 	updatePassword: handleErrorAsync(async (req, res, next) => {
 		const { password, confirmPassword } = req.body;
+
+		if (!validator.isLength(password, { min: 8 })) {
+			return next(appError(400, "密碼需至少 8 碼以上，並中英混合", next));
+		}
+
+		if (validator.isAlpha(password) || validator.isNumeric(password)) {
+			return next(appError(400, "密碼需至少 8 碼以上，並中英混合", next));
+		}
+
 		if (password !== confirmPassword) {
 			return next(appError(400, "密碼不一致", next));
 		}
 
-		newPassword = await bcrypt.hash(password, 12);
+		const newPassword = await bcrypt.hash(password, 12);
 
 		const user = await User.findByIdAndUpdate(req.user.id, {
 			password: newPassword,
