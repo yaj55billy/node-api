@@ -24,7 +24,6 @@ const isAuth = handleErrorAsync(async (req, res, next) => {
 				const tokenError = appError(401, "請重新登入唷～", next);
 				reject(tokenError);
 			} else {
-				console.log("token 正確");
 				resolve(payload);
 			}
 		});
